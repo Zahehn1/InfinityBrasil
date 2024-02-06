@@ -1,74 +1,17 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+### Projeto em estado de construção
+Prezado avaliador, por favor peço que dê uma chance ao meu primeiro projeto sendo apresentado a empresa.
+Sei que pode parecer bem desengonçado, feio, xoxo capenga. Mas me esforcei bastante para utilizar da minha própria lógica de programação e as aulas
+da Alura. Comecei há um tempo já no ramo de programação, mas sem êxito em conseguir trabalhos e algo que te motive acaba que você fica sem prática. E foi o que aconteceu comigo
+esta oportunidade que me foi dada foi um "up" para que eu pudesse voltar a estudar sobre bastante coisa e me desse o ânimo novamente que eu precisava para voltar a esse nicho da programação. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+De qualquer forma, sendo um feedback positivo ou negativo, fiquei muito feliz de ter participado do processo seletivo. E quem sabe (espero de vdd) que eu consiga participar do time da Infinity Brasil..
 
-## Available Scripts
 
-In the project directory, you can run:
+### Link do Deploy pelo netlify:
 
-### `npm start`
+Observações: Os botões da navbar não estão funcionando após o deploy (não tenho idéia do porque) mas acredito que seja por eu ter inserido um <a> dentro do <button>. Pois o <a> do registro ainda funciona. Bom isso foi o bug que eu consegui visualizar por agora (deve ter mais). Mas o mais importante que é a validação, o calculo e a inserção de carga funciona. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://darling-bubblegum-2df645.netlify.app/
 =======
 # InfinityBrasil
 Meu primeiro teste para empresa
