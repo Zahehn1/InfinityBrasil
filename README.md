@@ -9,7 +9,7 @@ De qualquer forma, sendo um feedback positivo ou negativo, fiquei muito feliz de
 
 ### Link do Deploy pelo netlify:
 
-Observações: Os botões da navbar não estão funcionando após o deploy (não tenho idéia do porque) mas acredito que seja por eu ter inserido um "a" dentro do "button" . Pois o "a" do registro ainda funciona. Bom isso foi o bug que eu consegui visualizar por agora (deve ter mais). Mas o mais importante que é a validação, o calculo e a inserção de carga funciona. 
+Observações: Os botões da navbar não estão funcionando após o deploy (não tenho idéia do porque) mas acredito que seja por eu ter inserido um "a" dentro do "button" . Pois o "a" do registro ainda funciona. Bom isso foi o bug que eu consegui visualizar por agora (deve ter mais). Mas o mais importante que é a validação, o calculo e a inserção de carga funciona. _PELO MENOS NA MINHA MÁQUINA FUNCIONA_
 
 https://darling-bubblegum-2df645.netlify.app/
 =======
