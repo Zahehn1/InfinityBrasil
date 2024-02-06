@@ -1,0 +1,54 @@
+.NavigationHeader a{
+
+    text-decoration: none;
+    padding: 0;
+    color: #79AC52;
+    background-color: transparent;
+    margin: 2px;
+    border: 0 white;
+    width: 100%;
+    font-size: medium;
+    
+}
+.NavigationHeader button{
+    color: transparent;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    margin: 2px;
+}
+.NavigationHeader a:hover{
+
+   color: white;
+   animation:5s ease-in;
+    
+}
+.NavigationHeader button:hover{
+ background-color: #287BA5;
+ color: #ffff;
+ animation: 5s ease-in;
+
+ 
+}
+.NavigationHeader{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: sticky;
+    width: 100%;
+
+    
+}
+.NavigationHeader img{
+    width: fit-content;
+    max-width: 50%;
+}
+.juncaoNavIMG{
+    display: flexbox;
+    align-items: center;
+    margin: 0 auto;
+   width: fit-content;
+   min-width: 300px;
+   
+
+}
