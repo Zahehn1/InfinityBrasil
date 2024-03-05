@@ -1,32 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
 
 .REGISTERFORM{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 40px;
     width: 100%;
-    display: flex ;
-    flex-direction: column;
-    flex-wrap: wrap !;
-    
-}
-.SectionForm {
-    min-width: 300px;
-    background-color: #79AC52;
-    justify-content: space-between;
-    margin: 0 auto;
     max-width: 80%;
-    color: #0f577a;
-    box-shadow: rgba(99, 97, 97, 0.61) 4px 4px 10px;
+    margin: 0 auto;
+    border: 0.5px black solid;
+    box-shadow: 4px 10px 16px 0px rgb(77, 73, 73);
+    border-radius: 2rem;
+    margin-bottom: 50px;
+ 
 }
 
-.FormRegister {
-    width: 100%;
-    justify-content: space-between;
-}
-
-.FormRegister fieldset {
-    flex: 1 0 auto;
-    margin: 10px;
-    box-sizing: border-box;
+.REGISTERFORM label{
+    color: black;
+    display: flex;
 }
 .FormRegister input{
-    margin: 10px;
+    color: rgb(0, 0, 0);
+    width: 50%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 5px;
+    justify-content: space-between;
+    text-decoration: none;
+    border: none;
+    background-color: rgb(209, 203, 203);
+    border-radius: 10px;
+    display: flex !important;
+    flex-direction: row;
+}
+.REGISTERFORM fieldset{
+    border-color: transparent;
+    font-size: large;
+    padding: 20px;
+   text-transform: uppercase;
 }

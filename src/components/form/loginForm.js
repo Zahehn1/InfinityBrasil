@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
 import { Link, useNavigate } from "react-router-dom";
+import "../form/form.css";
 
 export const LoginForm = () => {
   const [cpf, setCPF] = useState("");
@@ -28,31 +29,31 @@ export const LoginForm = () => {
 
   return (
     <>
-      <section>
+      <section className="container">
         <form>
-          <fieldset>
-            <legend>Login</legend>
-            <label>Insira seu CPF </label>
-            <IMaskInput
-              mask="000.000.000-00"
-              placeholder="CPF..."
-              value={cpf}
-              onChange={handleChangeCPF}
-              required
-            />
-            <label>Insira sua senha </label>
-            <input
-              type="password"
-              placeholder="Senha..."
-              value={senha}
-              onChange={handleChangeSenha}
-            />
-            <button type="button" onClick={validar}>
-              Enviar
-            </button>
+          <h2>LOGIN</h2>
+          <label>Insira seu CPF </label>
+          <IMaskInput
+            mask="000.000.000-00"
+            placeholder="CPF..."
+            value={cpf}
+            onChange={handleChangeCPF}
+            required
+          />
+          <label>Insira sua senha </label>
+          <input
+            type="password"
+            placeholder="Senha..."
+            value={senha}
+            onChange={handleChangeSenha}
+          />
+          <button type="button" onClick={validar}>
+            Enviar
+          </button>
 
-            <Link to="/Registro">Não possui cadastro? Clique aqui</Link>
-          </fieldset>
+          <Link to="/Registro" /*isso ainda e considerado um "a" no css*/>
+            Não possui cadastro? Clique aqui
+          </Link>
         </form>
       </section>
     </>

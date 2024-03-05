@@ -1,3 +1,20 @@
+.NavigationHeader{
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+
+    
+}
+.NavigationHeader .banner{
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.NavigationHeader img{
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+}
 .NavigationHeader a{
 
     text-decoration: none;
@@ -15,12 +32,15 @@
     background-color: transparent;
     text-decoration: none;
     border: none;
-    margin: 2px;
+    margin: 0 auto  !important;
+    padding: 10px;
+    border-radius: 3px;
 }
 .NavigationHeader a:hover{
 
    color: white;
-   animation:5s ease-in;
+   animation:7s ease-in;
+   border-radius: 10px;
     
 }
 .NavigationHeader button:hover{
@@ -29,26 +49,4 @@
  animation: 5s ease-in;
 
  
-}
-.NavigationHeader{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    position: sticky;
-    width: 100%;
-
-    
-}
-.NavigationHeader img{
-    width: fit-content;
-    max-width: 50%;
-}
-.juncaoNavIMG{
-    display: flexbox;
-    align-items: center;
-    margin: 0 auto;
-   width: fit-content;
-   min-width: 300px;
-   
-
 }

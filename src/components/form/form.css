@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+body{
+    font-family: Roboto, sans-serif;
+    
+
+}
+.container {
+    margin: 0 auto;
+    display: flex;
+    padding: 3px;
+   align-items: center;
+   
+}
+.container label{
+    color: black;
+display: flex;
+}
+.container input{
+    color: rgb(0, 0, 0);
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 5px;
+    justify-content: space-between;
+    text-decoration: none;
+    border: none;
+    background-color: rgb(209, 203, 203);
+    border-radius: 10px;
+    
+}
+.container form {
+    padding: 40px;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto; /*a solucao divina pra centralizar tudo no css*/
+    border: 0.5px black solid;
+    box-shadow: 4px 10px 16px 0px rgb(77, 73, 73);
+    border-radius: 2rem;
+    margin-bottom: 50px; /* Adicionei margem inferior para separar dos outros elementos */
+    text-transform: uppercase;
+}
+.container form h2{
+    text-decoration: none;
+    display: flex;
+    flex-wrap: nowrap;
+    /* align-content: center; */
+    justify-content: center;
+    flex-direction: row-reverse;
+    font-weight: normal;
+    margin: 0 auto;
+    margin-bottom: 10%;
+
+    
+}
+.container form button{
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    color: #000000;
+    background-color: transparent;
+    padding: 4px 17px;
+    border: 1.5px solid #5c9f1e;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 25px;
+    margin-bottom: 50px;
+ }
