@@ -6,8 +6,8 @@
     width: 100%;
     max-width: 80%;
     margin: 0 auto;
-    border: 0.5px black solid;
-    box-shadow: 4px 10px 16px 0px rgb(77, 73, 73);
+    border: 2px solid #80cf3f;
+    box-shadow: 4px 10px 16px 0px #80cf3f;
     border-radius: 2rem;
     margin-bottom: 50px;
  
@@ -19,9 +19,11 @@
 }
 .FormRegister input{
     color: rgb(0, 0, 0);
-    width: 50%;
-    margin-top: 25px;
+    width: 100%;
+    margin: 0 auto;
+    align-content: center;
     margin-bottom: 25px;
+    margin-top: 20px;
     padding: 5px;
     justify-content: space-between;
     text-decoration: none;
@@ -36,4 +38,5 @@
     font-size: large;
     padding: 20px;
    text-transform: uppercase;
+   
 }

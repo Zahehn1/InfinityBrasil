@@ -1,11 +1,9 @@
-import { LoginForm } from "./components/form/loginForm.js";
-import { NavBar } from "./components/navbar/navbar.js";
-
+import Rotas from "./components/routes/routes.js";
+//muda nada aqui nao
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <LoginForm />
+      <Rotas />
     </div>
   );
 }

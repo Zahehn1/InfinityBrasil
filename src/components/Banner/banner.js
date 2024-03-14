@@ -1,13 +1,12 @@
-import './banner.css'
+import "./banner.css";
+import ImagemLogo from "../imgs/infinityBrasil.png";
 
-function Banner (){
-
-    return(
-
-        <div className="banner">
-        <img src="/imgs/infinityBrasil.png" alt="Foto Da Empresa"/>
-        </div>
-    )
+function Banner() {
+  return (
+    <div className="banner">
+      <img src={ImagemLogo} alt="Logotipo" />
+    </div>
+  );
 }
 
-export default Banner
+export default Banner;

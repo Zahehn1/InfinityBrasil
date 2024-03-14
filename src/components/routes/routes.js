@@ -1,17 +1,27 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import PainelADM from "../admin/adminPanel/PainelADM";
-import { ClientPage } from "../user/userPage";
+import { Routes, Route } from "react-router-dom";
 
-const Rotas = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/adminPage" component={PainelADM} />
-        <Route path="/erro" component={ClientPage} />
-      </Switch>
-    </Router>
-  );
-};
+import HomePage from "../user/HomePage/HomePage";
+import { ClientPage } from "../user/userPage";
+import { RegisterForm } from "../registerForm/register";
+import { PainelAdmin } from "../admin/adminPanel/PainelADM";
+import { LoginForm } from "../form/loginForm";
+import { BuscaCargas } from "../searchDelivery/Search";
+import { Settings } from "../config/settings";
+import { FaleConosco } from "../talkWus/SAC";
+//não mexer.
+//colocar rotas aqui dentro nas proximas vezes.
+
+const Rotas = () => (
+  <Routes>
+    <Route exact path="/" element={<ClientPage />} />
+    <Route path="/Registro" element={<RegisterForm />} />
+    <Route path="/050900" element={<PainelAdmin />} />
+    <Route path="/login" element={<LoginForm />} />
+    <Route path="/Home" element={<HomePage />} />
+    <Route path="/BuscarFretes" element={<BuscaCargas />} />
+    <Route path="/Configuracoes" element={<Settings />} />
+    <Route path="/FaleConosco" element={<FaleConosco />} />
+  </Routes>
+);
 
 export default Rotas;

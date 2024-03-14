@@ -9,6 +9,7 @@ body{
     display: flex;
     padding: 3px;
    align-items: center;
+
    
 }
 .container label{
@@ -38,6 +39,8 @@ display: flex;
     border-radius: 2rem;
     margin-bottom: 50px; /* Adicionei margem inferior para separar dos outros elementos */
     text-transform: uppercase;
+    border: 2px solid #80cf3f;
+    box-shadow: 4px 10px 16px 0px #80cf3f;
 }
 .container form h2{
     text-decoration: none;

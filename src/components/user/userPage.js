@@ -12,3 +12,4 @@ export const ClientPage = () => {
     </>
   );
 };
+export default ClientPage;
