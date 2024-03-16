@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
+import "../adminPanel/formcarga.css";
 
 export const UparCarga = () => {
   //states para atualizar os valos inseridos pelo user
@@ -63,10 +64,10 @@ export const UparCarga = () => {
 
   return (
     <>
-      <div>
-        <section>
-          <form onSubmit={handleSubmit}>
-            <fieldset>
+      <div className="UparCargas">
+        <container>
+          <section>
+            <form onSubmit={handleSubmit}>
               <legend>Preencha os dados da carga a ser colocada</legend>
               <label>Insira o nome da carga</label>
               <input
@@ -105,12 +106,11 @@ export const UparCarga = () => {
                 required
               />
               <button type="submit">Criar nova carga</button>
-            </fieldset>
-          </form>
-        </section>
+            </form>
+          </section>
+        </container>
 
         <section>
-          <h2>Cargas Cadastradas</h2>
           <ul>
             {cargas.map((carga, index) => (
               <li key={index}>

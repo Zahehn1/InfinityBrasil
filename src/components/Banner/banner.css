@@ -1,0 +1,13 @@
+.NavigationHeader img{
+    max-width: 25%;
+    width: 180px;
+    height: 150px;
+    display: flex;
+    position: sticky;
+    float: left;
+    bottom: 0;
+    left: 0;
+}
+nav{
+    position: relative;
+}

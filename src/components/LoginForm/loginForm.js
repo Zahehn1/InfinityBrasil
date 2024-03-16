@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
 import { Link, useNavigate } from "react-router-dom";
-import "../form/form.css";
+import "./form.css";
 
 export const LoginForm = () => {
   const [cpf, setCPF] = useState("");
@@ -21,9 +21,9 @@ export const LoginForm = () => {
     const senhaValida = "admin";
 
     if (cpf === cpfValido && senha === senhaValida) {
-      navigate("/adminPage");
+      navigate("/050900");
     } else {
-      navigate("/erro");
+      
     }
   };
 

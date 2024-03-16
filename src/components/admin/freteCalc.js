@@ -4,12 +4,21 @@ const CalculadoraFrete = () => {
   const [distancia, setDistancia] = useState("");
   const [pesoProduto, setPesoProduto] = useState("");
   const [tipoVeiculo, setTipoVeiculo] = useState("");
-  const [valorFrete, setValorFrete] = useState(null);
-  const [taxa, setTaxa] = useState(null);
+  const [historicoFretes, setHistoricoFretes] = useState([]);
 
-  const calcularValorFrete = () => {
-    // Lógica para calcular o valor do frete com base no tipo de veículo
+  const calcularValorFrete = (e) => {
+    e.preventDefault();
+
     let fatorTipoVeiculo;
+    let fatorPesoProduto;
+
+    if (pesoProduto >= 300) {
+      fatorPesoProduto = 3.5;
+    } else if (pesoProduto >= 200) {
+      fatorPesoProduto = 2.0;
+    } else {
+      fatorPesoProduto = 1.0;
+    }
 
     switch (tipoVeiculo) {
       case "Bi-trem":
@@ -22,12 +31,13 @@ const CalculadoraFrete = () => {
         fatorTipoVeiculo = 2;
         break;
       default:
-        fatorTipoVeiculo = 1;
+        fatorTipoVeiculo = "0";
+        break;
     }
 
-    const valorFreteBruto = distancia * (pesoProduto / 100) * fatorTipoVeiculo;
+    const valorFreteBruto =
+      distancia * pesoProduto * fatorPesoProduto * fatorTipoVeiculo;
 
-    // Lógica para aplicar a taxa com base na distância
     let taxa;
     if (distancia <= 100) {
       taxa = 0.05;
@@ -39,54 +49,94 @@ const CalculadoraFrete = () => {
       taxa = 0.1;
     }
 
-    // Calcula o valor final do frete (frete bruto - taxa)
-    const valorFinalFrete = valorFreteBruto - valorFreteBruto * taxa;
+    const valorFinalFrete = valorFreteBruto + valorFreteBruto * taxa;
 
-    setValorFrete(valorFinalFrete.toFixed(2)); // Arredonda para duas casas decimais
-    setTaxa((taxa * 100).toFixed(2)); // Arredonda para duas casas decimais e converte para porcentagem
+    const valorRecebidoEntregador = valorFreteBruto - valorFreteBruto * taxa;
+
+    const freteCalculado = {
+      distancia: distancia,
+      pesoProduto: pesoProduto,
+      tipoVeiculo: tipoVeiculo,
+      valorFrete: valorFinalFrete.toFixed(2),
+      taxaAplicada: (taxa * 100).toFixed(2),
+      valorRecebidoEntregador: valorRecebidoEntregador.toFixed(2),
+    };
+
+    setHistoricoFretes([...historicoFretes, freteCalculado]);
+
+    setDistancia("");
+    setPesoProduto("");
+    setTipoVeiculo("");
+  };
+
+  const handleExcluirFrete = (index) => {
+    const novoHistoricoFretes = [...historicoFretes];
+    novoHistoricoFretes.splice(index, 1);
+    setHistoricoFretes(novoHistoricoFretes);
   };
 
   return (
     <div>
-      <h2>Calculadora de Frete</h2>
-      <label>
-        Distância (em km):
-        <input
-          type="number"
-          value={distancia}
-          onChange={(e) => setDistancia(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Peso do Produto (em kg):
-        <input
-          type="number"
-          value={pesoProduto}
-          onChange={(e) => setPesoProduto(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Tipo de Veículo:
-        <select
-          value={tipoVeiculo}
-          onChange={(e) => setTipoVeiculo(e.target.value)}
-        >
-          <option value="">Selecione o tipo de veículo</option>
-          <option value="Bi-trem">Bi-trem</option>
-          <option value="Munk">Munk</option>
-          <option value="caminhao">Caminhão</option>
-        </select>
-      </label>
-      <br />
-      <button onClick={calcularValorFrete}>Calcular Frete</button>
-      <br />
-      {valorFrete !== null && (
-        <div>
-          <h3>Valor do Frete: R$ {valorFrete}</h3>
-          <h3>Taxa Aplicada: {taxa}%</h3>
-        </div>
+      <form onSubmit={calcularValorFrete}>
+        <h2>Calculadora de Frete</h2>
+        <label>
+          Distância (em km):
+          <input
+            type="number"
+            value={distancia}
+            onChange={(e) => setDistancia(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Peso do Produto (em kg):
+          <input
+            type="number"
+            value={pesoProduto}
+            onChange={(e) => setPesoProduto(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Tipo de Veículo:
+          <select
+            value={tipoVeiculo}
+            onChange={(e) => setTipoVeiculo(e.target.value)}
+          >
+            <option value="">Selecione o tipo de veículo</option>
+            <option value="Bi-trem">Bi-trem</option>
+            <option value="Munk">Munk</option>
+            <option value="caminhao">Caminhão</option>
+          </select>
+        </label>
+        <br />
+        <button type="submit">Calcular Frete</button>
+      </form>
+
+      {historicoFretes.length > 0 && (
+        <form onSubmit={handleExcluirFrete}>
+          <div>
+            <h2>Histórico de Fretes Calculados</h2>
+            <ul>
+              {historicoFretes.map((frete, index) => (
+                <li key={index}>
+                  <p>Distância: {frete.distancia} km</p>
+                  <p>Peso do Produto: {frete.pesoProduto} kg</p>
+                  <p>Tipo de Veículo: {frete.tipoVeiculo}</p>
+                  <p>Valor do Frete: R$ {frete.valorFrete}</p>
+                  <p>Taxa Aplicada: {frete.taxaAplicada}%</p>
+                  <p>
+                    Valor Recebido pelo Entregador: R${" "}
+                    {frete.valorRecebidoEntregador}
+                  </p>
+                  <button onClick={() => handleExcluirFrete(index)}>
+                    Excluir
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </form>
       )}
     </div>
   );

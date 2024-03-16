@@ -4,11 +4,12 @@ import HomePage from "../user/HomePage/HomePage";
 import { ClientPage } from "../user/userPage";
 import { RegisterForm } from "../registerForm/register";
 import { PainelAdmin } from "../admin/adminPanel/PainelADM";
-import { LoginForm } from "../form/loginForm";
+import { LoginForm } from "../LoginForm/loginForm";
 import { BuscaCargas } from "../searchDelivery/Search";
 import { Settings } from "../config/settings";
 import { FaleConosco } from "../talkWus/SAC";
 //não mexer.
+
 //colocar rotas aqui dentro nas proximas vezes.
 
 const Rotas = () => (
