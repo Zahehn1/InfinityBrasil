@@ -14,7 +14,7 @@ import { FaleConosco } from "../talkWus/SAC";
 
 const Rotas = () => (
   <Routes>
-    <Route exact path="/" element={<ClientPage />} />
+    <Route exact path="/" title element={<ClientPage />} />
     <Route path="/Registro" element={<RegisterForm />} />
     <Route path="/050900" element={<PainelAdmin />} />
     <Route path="/login" element={<LoginForm />} />
