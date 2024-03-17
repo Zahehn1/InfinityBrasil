@@ -1,17 +1,16 @@
 ### Projeto em estado de construção
-Prezado avaliador, por favor peço que dê uma chance ao meu primeiro projeto sendo apresentado a empresa.
-Sei que pode parecer bem desengonçado, feio, xoxo capenga. Mas me esforcei bastante para utilizar da minha própria lógica de programação e as aulas
-da Alura. Comecei há um tempo já no ramo de programação, mas sem êxito em conseguir trabalhos e algo que te motive acaba que você fica sem prática. E foi o que aconteceu comigo
-esta oportunidade que me foi dada foi um "up" para que eu pudesse voltar a estudar sobre bastante coisa e me desse o ânimo novamente que eu precisava para voltar a esse nicho da programação. 
+Prezado avaliador, dei o meu melhor para realizar o aprimoramento do projeto mas deve haver algumas funções que estão incompletas e/ou não funcionais conforme pedido dentro da prova prática. 
+### O projeto é bem promissor e realmente a premissa dele é muito boa devido ao público do mundo ser abastecido principalemente por caminhoneiros entre outros veículos que realizam o frete para a população. 
+
+### Minha maior dificuldade nesse projeto foi para realizar a conexão com o banco de dados do SQL SERVER MANAGEMENT STUDIO 19 tanto que não foi possível realizar o projeto através dele e apelei para utilização do WAMP Server. Ambos funcionam normalmente em MySQL. 
+### O projeto me fez ganhar um aprendizado muito grande e caso não seja dessa vez ficarei feliz de participar de demais processos seletivos com a empresa de vocês. Foi desafiador e emocionante ao mesmo tempo. Precisei colocar em prática algumas coisas que não utilizava há muito tempo e acredito que conforme todos os bons seres humanos foi necessário a utilização de algumas outras ferramentas para o auxilio da construção do projeto tais quais: CHAT GPT (Open AI), www.stackoverflow.com, Documentação do REACTJS, e alguns cursos da Alura. 
+
 
 De qualquer forma, sendo um feedback positivo ou negativo, fiquei muito feliz de ter participado do processo seletivo. E quem sabe (espero de verdade) que eu consiga participar do time da Infinity Brasil..
 
 
-### Link do Deploy pelo netlify:
+### O deploy pelo netlify foi desativado devido a alguns bugs onde as rotas não estavam realizando a função necessária
 
-Observações: Os botões da navbar não estão funcionando após o deploy (não tenho idéia do porque) mas acredito que seja por eu ter inserido um "a" dentro do "button" . Pois o "a" do registro ainda funciona. Bom isso foi o bug que eu consegui visualizar por agora (deve ter mais). Mas o mais importante que é a validação, o calculo e a inserção de carga funciona. _PELO MENOS NA MINHA MÁQUINA FUNCIONA_
-
-https://darling-bubblegum-2df645.netlify.app/
 =======
 # InfinityBrasil
 Meu primeiro teste para empresa
