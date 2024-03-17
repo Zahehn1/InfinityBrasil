@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { IMaskInput } from "react-imask";
 import "./register.css";
 import { NavBar } from "../navbar/navbar";
+import { Link } from "react-router-dom";
 
 export class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      TipoDeUsuario: "",
       NomeCompleto: "",
       Email: "",
       CPF: "",
@@ -72,6 +74,7 @@ export class RegisterForm extends Component {
       }
     }
   };
+
   render() {
     return (
       <>
@@ -123,12 +126,13 @@ export class RegisterForm extends Component {
               <input
                 type="text"
                 placeholder="Digite o numero da sua CNH"
-                value={this.state.NumeroCnh}
-                onChange={(e) => this.setState({ NumeroCnh: e.target.value })}
+                value={this.state.NumeroCNH}
+                onChange={(e) => this.setState({ NumeroCNH: e.target.value })}
               />
               <label>Local de expedicao CNH</label>
               <input
                 type="text"
+                maxLength={5}
                 value={this.state.LocalDeExpCNH}
                 onChange={(e) =>
                   this.setState({ LocalDeExpCNH: e.target.value })
@@ -150,6 +154,7 @@ export class RegisterForm extends Component {
                 type="text"
                 placeholder="CEP..."
                 value={this.state.CEP}
+                maxLength={9}
                 onChange={(e) => this.setState({ CEP: e.target.value })}
               />
               <div>
@@ -181,7 +186,7 @@ export class RegisterForm extends Component {
               </div>
               <legend>Tipo de veiculo*</legend>
               <label id="Pickup" for="Pickup">
-                Picape
+                Carreta
               </label>
               <input
                 type="radio"
@@ -190,7 +195,7 @@ export class RegisterForm extends Component {
                 value={"Picape"}
               />
               <label id="Carreta" for="Carreta">
-                Carreta
+                Caminhao
               </label>
               <input
                 type="radio"
@@ -199,7 +204,7 @@ export class RegisterForm extends Component {
                 value={"Carreta"}
               />
               <label id="Caminhao" for="Caminhao">
-                Caminhao
+                Furgao
               </label>
               <input
                 type="radio"
@@ -213,8 +218,6 @@ export class RegisterForm extends Component {
               </label>
               <input
                 type="file"
-                accept="image/jpg, image/png, image/jpeg"
-                alt="imagem sobre DOC veiculo"
                 value={this.state.FotoDocVei}
                 onChange={(e) => this.setState({ FotoDocVei: e.target.value })}
               />
@@ -253,8 +256,8 @@ export class RegisterForm extends Component {
                 required
                 maxLength={18}
                 alt="Local de inserir senha"
-                value={this.state.SENHA}
-                onChange={(e) => this.setState({ SENHA: e.target.value })}
+                value={this.state.Senha}
+                onChange={(e) => this.setState({ Senha: e.target.value })}
               />
               <label>Confirme sua senha*</label>
               <input
@@ -266,6 +269,7 @@ export class RegisterForm extends Component {
                 onChange={(e) => this.setState({ confSENHA: e.target.value })}
               />
               <button type="submit">Fazer registro</button>
+              <Link to="/Home">Já possui cadastro? Faça login aqui</Link>
             </form>
           </section>
         </div>

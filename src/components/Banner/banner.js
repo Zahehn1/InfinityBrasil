@@ -2,6 +2,7 @@ import "./banner.css";
 import Foto from "../imgs/infinityBrasil.png";
 import "../navbar/navbar.css";
 import "../Banner/banner.css";
+import { Link } from "react-router-dom";
 
 function Logofoto() {
   return (
@@ -9,7 +10,7 @@ function Logofoto() {
       <div className="NavigationHeader">
         <img src={Foto} alt="Logotipo" />
         <button>
-          <a href="/Home">Inicio</a>
+          <Link to="/Home">Início</Link>
         </button>
         <button>
           <a href="/BuscarFretes">Buscar Mercadorias</a>

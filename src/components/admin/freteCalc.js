@@ -21,13 +21,13 @@ const CalculadoraFrete = () => {
     }
 
     switch (tipoVeiculo) {
-      case "Bi-trem":
+      case "Caminhao":
         fatorTipoVeiculo = 1.2;
         break;
-      case "Munk":
+      case "furgao":
         fatorTipoVeiculo = 1.5;
         break;
-      case "caminhao":
+      case "carreta":
         fatorTipoVeiculo = 2;
         break;
       default:
@@ -104,9 +104,9 @@ const CalculadoraFrete = () => {
             onChange={(e) => setTipoVeiculo(e.target.value)}
           >
             <option value="">Selecione o tipo de veículo</option>
-            <option value="Bi-trem">Bi-trem</option>
-            <option value="Munk">Munk</option>
-            <option value="caminhao">Caminhão</option>
+            <option value="Caminhao">Caminhao</option>
+            <option value="Furgao">Furgao</option>
+            <option value="Carreta">Carreta</option>
           </select>
         </label>
         <br />

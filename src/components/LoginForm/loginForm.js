@@ -16,14 +16,26 @@ export const LoginForm = () => {
     setSenha(e.target.value);
   };
 
-  const validar = () => {
-    const cpfValido = "000.000.000-00";
-    const senhaValida = "admin";
+  const validar = async () => {
+    try {
+      const response = await fetch("http://localhost:3030/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cpf, senha }),
+      });
 
-    if (cpf === cpfValido && senha === senhaValida) {
-      navigate("/050900");
-    } else {
-      
+      if (response.status === 200) {
+        navigate("/050900");
+      } else if (response.status === 401) {
+        alert("CPF ou senha incorretos");
+      } else {
+        alert("Erro ao realizar o login");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      alert("Erro ao fazer login");
     }
   };
 
@@ -50,7 +62,6 @@ export const LoginForm = () => {
           <button type="button" onClick={validar}>
             Enviar
           </button>
-
           <Link to="/Registro" /*isso ainda e considerado um "a" no css*/>
             Não possui cadastro? Clique aqui
           </Link>

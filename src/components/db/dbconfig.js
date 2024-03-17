@@ -30,7 +30,34 @@ config.connect(async (err) => {
     console.log(`Servidor na porta ${PORT}`);
   });
 });
+//requisicao de login
+app.post("/login", async (req, res) => {
+  const { cpf, senha } = req.body;
 
+  try {
+    config.query(
+      "SELECT * FROM cadastro WHERE CPF = ? AND Senha = ?",
+      [cpf, senha],
+      async (err, results) => {
+        if (err) {
+          console.error("Erro ao buscar o usuário:", err);
+          return res.status(500).json({ error: "Erro interno do servidor" });
+        }
+
+        if (results.length === 0) {
+          return res.status(401).json({ error: "CPF ou senha incorretos" });
+        }
+
+        // Usuário encontrado, retornar sucesso
+        res.status(200).json({ message: "Login realizado com sucesso" });
+      }
+    );
+  } catch (error) {
+    console.error("Erro ao fazer login:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+});
+//requisicao de registro
 app.post("/registro", async (req, res) => {
   const {
     NomeCompleto,
@@ -53,7 +80,9 @@ app.post("/registro", async (req, res) => {
   } = req.body;
 
   if (!NomeCompleto) return res.status(400).json({ error: "Há campos vagos." });
-
+  if (Senha !== confSENHA) {
+    return res.status(400).json({ error: "As senhas não coincidem." });
+  }
   try {
     config.query(
       "SELECT CPF FROM cadastro WHERE CPF = ?",
@@ -98,7 +127,10 @@ app.post("/registro", async (req, res) => {
                 .json({ error: "Erro interno do servidor" });
             }
             console.log("Usuário inserido com sucesso!");
-            res.status(201).json({ message: "Usuário inserido com sucesso!" });
+            res.status(201).json({
+              message: "Usuário inserido com sucesso!",
+              redirectTo: "/login",
+            });
           }
         );
       }
