@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
 import "../adminPanel/formcarga.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const UparCarga = () => {
   //states para atualizar os valos inseridos pelo user
@@ -64,6 +66,19 @@ export const UparCarga = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition="Bounce"
+      />
       <div className="UparCargas">
         <container>
           <section>
@@ -105,7 +120,24 @@ export const UparCarga = () => {
                 onChange={handleDescricaoCarga}
                 required
               />
-              <button type="submit">Criar nova carga</button>
+              <button
+                type="submit"
+                onClick={() => {
+                  toast.success("Carga Criada com sucesso", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: "Bounce",
+                  });
+                }}
+              >
+                Criar nova carga
+              </button>
             </form>
           </section>
         </container>

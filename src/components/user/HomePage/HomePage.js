@@ -7,7 +7,6 @@ export class HomePage extends Component {
     return (
       <>
         <NavBar />
-        <LoginForm />
       </>
     );
   }

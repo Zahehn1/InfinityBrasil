@@ -10,7 +10,7 @@ function Logofoto() {
       <div className="NavigationHeader">
         <img src={Foto} alt="Logotipo" />
         <button>
-          <Link to="/Home">Início</Link>
+          <Link to="/">Início</Link>
         </button>
         <button>
           <a href="/BuscarFretes">Buscar Mercadorias</a>

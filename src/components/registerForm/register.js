@@ -1,33 +1,40 @@
 import React, { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { IMaskInput } from "react-imask";
 import "./register.css";
 import { NavBar } from "../navbar/navbar";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      TipoDeUsuario: "",
       NomeCompleto: "",
       Email: "",
       CPF: "",
       DataNascimento: "",
-      NumeroCNH: "", // Alterei de NumeroCnh para NumeroCNH para corresponder ao seu backend
-      LocalExpedicaoCNH: "", // Alterei de LocalDeExpCNH para LocalExpedicaoCNH
+      NumeroCNH: "",
+      LocalExpedicaoCNH: "",
       Endereco: "",
-      Complemento: "", // Adicionei a propriedade Complemento
+      Complemento: "",
       CEP: "",
-      Genero: "", // Adicionei a propriedade Genero
-      TipoVeiculo: "", // Adicionei a propriedade TipoVeiculo
+      Genero: "",
+      TipoVeiculo: "",
       PlacaVeiculo: "",
       MarcaVeiculo: "",
       ModeloVeiculo: "",
       AnoVeiculo: "",
       Senha: "",
-      confSENHA: "", // Corrigi para confSENHA para corresponder ao seu estado inicial
+      confSENHA: "",
     };
   }
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
+  };
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,7 +60,7 @@ export class RegisterForm extends Component {
     };
 
     try {
-      const response = await fetch("http://localhost:3030/registro", {
+      const response = await fetch("http://localhost:3031/registro", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +69,16 @@ export class RegisterForm extends Component {
       });
 
       if (response.status === 201) {
-        alert("usuario cadastrado com sucesso");
+        toast("Usuario Cadastrado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     } catch (error) {
       if (error.response && error.response.status === 500) {
@@ -74,11 +90,22 @@ export class RegisterForm extends Component {
       }
     }
   };
-
   render() {
     return (
       <>
         <NavBar />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <div className="REGISTERFORM">
           <section className="SectionForm">
             <form className="FormRegister" onSubmit={this.handleSubmit}>
@@ -147,8 +174,15 @@ export class RegisterForm extends Component {
                 value={this.state.Endereco}
                 onChange={(e) => this.setState({ Endereco: e.target.value })}
               />
-              <label for="complemento">Complemento</label>
-              <input placeholder="Complemento" id="complemento" type="Text" />
+              <label for="Complemento">Complemento</label>
+              <input
+                placeholder="Complemento"
+                id="Complemento"
+                type="Text"
+                value={this.state.Complemento}
+                maxLength={9}
+                onChange={(e) => this.setState({ Complemento: e.target.value })}
+              />
               <label> CEP</label>
               <input
                 type="text"
@@ -167,7 +201,8 @@ export class RegisterForm extends Component {
                   type="radio"
                   id="masculino"
                   name="genero"
-                  value={"masculino"}
+                  value={this.state.Genero}
+                  onChange={(e) => this.setState({ Genero: e.target.value })}
                 />
                 <label id="feminino" for="feminino">
                   Feminino
@@ -176,13 +211,20 @@ export class RegisterForm extends Component {
                   type="radio"
                   id="feminino"
                   name="genero"
-                  value={"feminino"}
+                  value={this.state.Genero}
+                  onChange={(e) => this.setState({ Genero: e.target.value })}
                 />
 
                 <label id="N/S" for="prefiro nao dizer">
                   Outros
                 </label>
-                <input type="radio" id="N/S" name="genero" value={"N/S"} />
+                <input
+                  type="radio"
+                  id="N/S"
+                  name="genero"
+                  value={this.state.Genero}
+                  onChange={(e) => this.setState({ Genero: e.target.value })}
+                />
               </div>
               <legend>Tipo de veiculo*</legend>
               <label id="Pickup" for="Pickup">
@@ -192,7 +234,8 @@ export class RegisterForm extends Component {
                 type="radio"
                 id="Pickup"
                 name="tipoVeiculo"
-                value={"Picape"}
+                value={this.state.TipoVeiculo}
+                onChange={(e) => this.setState({ TipoVeiculo: e.target.value })}
               />
               <label id="Carreta" for="Carreta">
                 Caminhao
@@ -201,7 +244,8 @@ export class RegisterForm extends Component {
                 type="radio"
                 id="Carreta"
                 name="tipoVeiculo"
-                value={"Carreta"}
+                value={this.state.TipoVeiculo}
+                onChange={(e) => this.setState({ TipoVeiculo: e.target.value })}
               />
               <label id="Caminhao" for="Caminhao">
                 Furgao
@@ -210,7 +254,8 @@ export class RegisterForm extends Component {
                 type="radio"
                 id="Caminhao"
                 name="tipoVeiculo"
-                value={"Caminhao"}
+                value={this.state.TipoVeiculo}
+                onChange={(e) => this.setState({ TipoVeiculo: e.target.value })}
               />
               <legend>Dados do veículo</legend>
               <label htmlFor="Foto do documento do veiculo">
@@ -269,7 +314,7 @@ export class RegisterForm extends Component {
                 onChange={(e) => this.setState({ confSENHA: e.target.value })}
               />
               <button type="submit">Fazer registro</button>
-              <Link to="/Home">Já possui cadastro? Faça login aqui</Link>
+              <Link to="/Login">Já possui cadastro? Faça login aqui</Link>
             </form>
           </section>
         </div>

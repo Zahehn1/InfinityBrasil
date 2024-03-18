@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
 import { Link, useNavigate } from "react-router-dom";
 import "./form.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { NavBar } from "../navbar/navbar";
+
+let PORT = 3031;
+let site = `http://localhost:${PORT}/login`;
 
 export const LoginForm = () => {
   const [cpf, setCPF] = useState("");
@@ -18,7 +24,7 @@ export const LoginForm = () => {
 
   const validar = async () => {
     try {
-      const response = await fetch("http://localhost:3030/login", {
+      const response = await fetch(site, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +33,24 @@ export const LoginForm = () => {
       });
 
       if (response.status === 200) {
-        navigate("/050900");
+        const data = await response.json();
+        if (data.message === "Login realizado como super usuário") {
+          // Se for admin, direcionar para a página do admin
+          navigate("/050900");
+        } else {
+          // Se for usuário normal, direcionar para a página do usuário
+          navigate("/User");
+        }
+        toast.success("Login Realizado com Sucesso", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       } else if (response.status === 401) {
         alert("CPF ou senha incorretos");
       } else {
@@ -38,10 +61,22 @@ export const LoginForm = () => {
       alert("Erro ao fazer login");
     }
   };
-
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <section className="container">
+        <NavBar />
         <form>
           <h2>LOGIN</h2>
           <label>Insira seu CPF </label>

@@ -14,14 +14,14 @@ import { FaleConosco } from "../talkWus/SAC";
 
 const Rotas = () => (
   <Routes>
-    <Route exact path="/" title element={<ClientPage />} />
-    <Route path="/Registro" element={<RegisterForm />} />
-    <Route path="/050900" element={<PainelAdmin />} />
-    <Route path="/login" element={<LoginForm />} />
-    <Route path="/Home" element={<HomePage />} />
-    <Route path="/BuscarFretes" element={<BuscaCargas />} />
-    <Route path="/Configuracoes" element={<Settings />} />
-    <Route path="/FaleConosco" element={<FaleConosco />} />
+    <Route exact path="/" title element={<LoginForm />} />
+    <Route exact path="/Registro" element={<RegisterForm />} />
+    <Route exact path="/050900" element={<PainelAdmin />} />
+    <Route exact path="/login" element={<LoginForm />} />
+    <Route exact path="/User" element={<ClientPage />} />
+    <Route exact path="/BuscarFretes" element={<BuscaCargas />} />
+    <Route exact path="/Configuracoes" element={<Settings />} />
+    <Route exact path="/FaleConosco" element={<FaleConosco />} />
   </Routes>
 );
 
