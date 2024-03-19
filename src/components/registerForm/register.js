@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { IMaskInput } from "react-imask";
 import "./register.css";
 import { NavBar } from "../navbar/navbar";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export class RegisterForm extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export class RegisterForm extends Component {
       Endereco: "",
       Complemento: "",
       CEP: "",
-      Genero: "",
+      Genero: "", // Alterado para uma string vazia para evitar problemas
       TipoVeiculo: "",
       PlacaVeiculo: "",
       MarcaVeiculo: "",
@@ -29,6 +29,7 @@ export class RegisterForm extends Component {
       confSENHA: "",
     };
   }
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -36,9 +37,14 @@ export class RegisterForm extends Component {
     });
   };
 
+  handleRadioChange = (e) => {
+    this.setState({
+      Genero: e.target.value,
+    });
+  };
+
   handleSubmit = async (event) => {
     event.preventDefault();
-
     const userData = {
       NomeCompleto: this.state.NomeCompleto,
       Email: this.state.Email,
@@ -47,10 +53,10 @@ export class RegisterForm extends Component {
       NumeroCNH: this.state.NumeroCNH,
       LocalExpedicaoCNH: this.state.LocalExpedicaoCNH,
       Endereco: this.state.Endereco,
-      Complemento: this.state.Complemento, // Adicionei a propriedade Complemento
+      Complemento: this.state.Complemento,
       CEP: this.state.CEP,
-      Genero: this.state.Genero, // Adicionei a propriedade Genero
-      TipoVeiculo: this.state.TipoVeiculo, // Adicionei a propriedade TipoVeiculo
+      Genero: this.state.Genero,
+      TipoVeiculo: this.state.TipoVeiculo,
       PlacaVeiculo: this.state.PlacaVeiculo,
       MarcaVeiculo: this.state.MarcaVeiculo,
       ModeloVeiculo: this.state.ModeloVeiculo,
@@ -90,6 +96,7 @@ export class RegisterForm extends Component {
       }
     }
   };
+
   render() {
     return (
       <>
@@ -109,191 +116,185 @@ export class RegisterForm extends Component {
         <div className="REGISTERFORM">
           <section className="SectionForm">
             <form className="FormRegister" onSubmit={this.handleSubmit}>
-              <legend>Formulario de registro</legend>
-              <legend>Dados do condutor </legend>
-              <label htmlFor="NomeCompleto"> Nome Completo*</label>
+              <legend>Formulário de registro</legend>
+              <legend>Dados do condutor</legend>
+              <label htmlFor="NomeCompleto">Nome Completo*</label>
               <input
                 type="text"
                 id="NomeCompleto"
+                name="NomeCompleto"
                 placeholder="Nome..."
                 required
                 value={this.state.NomeCompleto}
-                onChange={(e) =>
-                  this.setState({ NomeCompleto: e.target.value })
-                }
+                onChange={this.handleChange}
               />
-              <label htmlFor="Email"> Email*</label>
+              <label htmlFor="Email">Email*</label>
               <input
                 type="email"
                 id="Email"
+                name="Email"
                 placeholder="email..."
                 required
                 value={this.state.Email}
-                onChange={(e) => this.setState({ Email: e.target.value })}
+                onChange={this.handleChange}
               />
-              <label> CPF*</label>
+              <label>CPF*</label>
               <IMaskInput
                 mask="000.000.000-00"
                 placeholder="CPF..."
                 required
+                name="CPF"
                 value={this.state.CPF}
-                onChange={(e) => this.setState({ CPF: e.target.value })}
+                onChange={this.handleChange}
               />
               <label>Data de nascimento*</label>
               <input
                 type="date"
                 required
+                name="DataNascimento"
                 placeholder="Data de nascimento..."
                 value={this.state.DataNascimento}
-                onChange={(e) =>
-                  this.setState({ DataNascimento: e.target.value })
-                }
+                onChange={this.handleChange}
               />
-              <label>Qual o numero da sua CNH</label>
+              <label>Qual o número da sua CNH</label>
               <input
                 type="text"
-                placeholder="Digite o numero da sua CNH"
+                name="NumeroCNH"
+                placeholder="Digite o número da sua CNH"
                 value={this.state.NumeroCNH}
-                onChange={(e) => this.setState({ NumeroCNH: e.target.value })}
+                onChange={this.handleChange}
               />
-              <label>Local de expedicao CNH</label>
+              <label>Local de expedição CNH</label>
               <input
                 type="text"
                 maxLength={5}
+                name="LocalExpedicaoCNH"
                 value={this.state.LocalDeExpCNH}
-                onChange={(e) =>
-                  this.setState({ LocalDeExpCNH: e.target.value })
-                }
+                onChange={this.handleChange}
               />
               <label>Foto da CNH</label>
               <input type="file" />
-              <label> Endereco*</label>
+              <label>Endereço*</label>
               <input
                 type="text"
+                name="Endereco"
                 placeholder="Endereço..."
                 value={this.state.Endereco}
-                onChange={(e) => this.setState({ Endereco: e.target.value })}
+                onChange={this.handleChange}
               />
-              <label for="Complemento">Complemento</label>
+              <label htmlFor="Complemento">Complemento</label>
               <input
                 placeholder="Complemento"
                 id="Complemento"
                 type="Text"
+                name="Complemento"
                 value={this.state.Complemento}
                 maxLength={9}
-                onChange={(e) => this.setState({ Complemento: e.target.value })}
+                onChange={this.handleChange}
               />
-              <label> CEP</label>
+              <label>CEP</label>
               <input
                 type="text"
+                name="CEP"
                 placeholder="CEP..."
                 value={this.state.CEP}
                 maxLength={9}
-                onChange={(e) => this.setState({ CEP: e.target.value })}
+                onChange={this.handleChange}
               />
               <div>
-                <legend> Genero*:</legend>
-
-                <label id="masculino" for="masculino">
-                  Masculino
-                </label>
+                <legend>Gênero*</legend>
+                <label htmlFor="masculino">Masculino</label>
                 <input
                   type="radio"
                   id="masculino"
-                  name="genero"
-                  value={this.state.Genero}
-                  onChange={(e) => this.setState({ Genero: e.target.value })}
+                  name="Genero"
+                  value="Masculino"
+                  onChange={this.handleRadioChange}
                 />
-                <label id="feminino" for="feminino">
-                  Feminino
-                </label>
+                <label htmlFor="feminino">Feminino</label>
                 <input
                   type="radio"
                   id="feminino"
-                  name="genero"
-                  value={this.state.Genero}
-                  onChange={(e) => this.setState({ Genero: e.target.value })}
+                  name="Genero"
+                  value="Feminino"
+                  onChange={this.handleRadioChange}
                 />
-
-                <label id="N/S" for="prefiro nao dizer">
-                  Outros
-                </label>
+                <label htmlFor="outro">Outro</label>
                 <input
                   type="radio"
-                  id="N/S"
-                  name="genero"
-                  value={this.state.Genero}
-                  onChange={(e) => this.setState({ Genero: e.target.value })}
+                  id="outro"
+                  name="Genero"
+                  value="Outro"
+                  onChange={this.handleRadioChange}
                 />
               </div>
-              <legend>Tipo de veiculo*</legend>
-              <label id="Pickup" for="Pickup">
-                Carreta
-              </label>
-              <input
-                type="radio"
-                id="Pickup"
-                name="tipoVeiculo"
-                value={this.state.TipoVeiculo}
-                onChange={(e) => this.setState({ TipoVeiculo: e.target.value })}
-              />
-              <label id="Carreta" for="Carreta">
-                Caminhao
-              </label>
+              <legend>Tipo de veículo*</legend>
+              <label htmlFor="Carreta">Carreta</label>
               <input
                 type="radio"
                 id="Carreta"
-                name="tipoVeiculo"
-                value={this.state.TipoVeiculo}
-                onChange={(e) => this.setState({ TipoVeiculo: e.target.value })}
+                name="TipoVeiculo"
+                value="Carreta"
+                onChange={this.handleChange}
               />
-              <label id="Caminhao" for="Caminhao">
-                Furgao
-              </label>
+              <label htmlFor="Caminhao">Caminhão</label>
               <input
                 type="radio"
                 id="Caminhao"
-                name="tipoVeiculo"
-                value={this.state.TipoVeiculo}
-                onChange={(e) => this.setState({ TipoVeiculo: e.target.value })}
+                name="TipoVeiculo"
+                value="Caminhão"
+                onChange={this.handleChange}
+              />
+              <label htmlFor="Furgao">Furgão</label>
+              <input
+                type="radio"
+                id="Furgao"
+                name="TipoVeiculo"
+                value="Furgão"
+                onChange={this.handleChange}
               />
               <legend>Dados do veículo</legend>
-              <label htmlFor="Foto do documento do veiculo">
-                Insira uma foto do documento do veiculo
+              <label htmlFor="fotoDocumento">
+                Insira uma foto do documento do veículo
               </label>
               <input
                 type="file"
+                name="FotoDocVei"
                 value={this.state.FotoDocVei}
-                onChange={(e) => this.setState({ FotoDocVei: e.target.value })}
+                onChange={this.handleChange}
               />
-              <label>Insira a placa do veiculo</label>
+              <label>Insira a placa do veículo</label>
               <input
                 type="text"
-                placeholder="Insira a placa do veiculo"
-                value={this.state.PlacaVei}
-                onChange={(e) => this.setState({ PlacaVei: e.target.value })}
+                name="PlacaVeiculo"
+                placeholder="Insira a placa do veículo"
+                value={this.state.PlacaVeiculo}
+                onChange={this.handleChange}
               />
-              <label htmlFor="MarcaVei">Marca do veiculo</label>
+              <label htmlFor="MarcaVei">Marca do veículo</label>
               <input
                 type="text"
                 id="MarcaVei"
+                name="MarcaVeiculo"
                 placeholder="Insira a marca"
-                value={this.state.Marca}
-                onChange={(e) => this.setState({ Marca: e.target.value })}
+                value={this.state.MarcaVeiculo}
+                onChange={this.handleChange}
               />
-              <label>Modelo do veiculo</label>
+              <label>Modelo do veículo</label>
               <input
                 type="text"
+                name="ModeloVeiculo"
                 placeholder="Insira o modelo"
-                value={this.state.ModeloVei}
-                onChange={(e) => this.setState({ ModeloVei: e.target.value })}
+                value={this.state.ModeloVeiculo}
+                onChange={this.handleChange}
               />
-              <label>Ano do veiculo</label>
+              <label>Ano do veículo</label>
               <input
-                type="NUMBER "
+                type="number"
+                name="AnoVeiculo"
                 placeholder="Insira o ano"
-                value={this.state.AnoVei}
-                onChange={(e) => this.setState({ AnoVei: e.target.value })}
+                value={this.state.AnoVeiculo}
+                onChange={this.handleChange}
               />
               <label>Crie sua senha*</label>
               <input
@@ -301,8 +302,9 @@ export class RegisterForm extends Component {
                 required
                 maxLength={18}
                 alt="Local de inserir senha"
+                name="Senha"
                 value={this.state.Senha}
-                onChange={(e) => this.setState({ Senha: e.target.value })}
+                onChange={this.handleChange}
               />
               <label>Confirme sua senha*</label>
               <input
@@ -310,8 +312,9 @@ export class RegisterForm extends Component {
                 required
                 maxLength={18}
                 alt="Local de inserir senha"
+                name="confSENHA"
                 value={this.state.confSENHA}
-                onChange={(e) => this.setState({ confSENHA: e.target.value })}
+                onChange={this.handleChange}
               />
               <button type="submit">Fazer registro</button>
               <Link to="/Login">Já possui cadastro? Faça login aqui</Link>

@@ -21,6 +21,9 @@ function Logofoto() {
         <button>
           <a href="/Configuracoes">Configuracoes</a>
         </button>
+        <button>
+          <a href="/">Sair</a>
+        </button>
       </div>
     </ul>
   );

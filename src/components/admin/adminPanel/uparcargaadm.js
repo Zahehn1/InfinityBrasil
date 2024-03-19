@@ -1,176 +1,238 @@
-import React, { useState } from "react";
-import { IMaskInput } from "react-imask";
-import "../adminPanel/formcarga.css";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../adminPanel/formcarga.css";
 
 export const UparCarga = () => {
-  //states para atualizar os valos inseridos pelo user
+  const [cargas, setCargas] = useState([]);
+  const [idCarga, setIdCarga] = useState("");
   const [nomeCarga, setNomeCarga] = useState("");
   const [pesoCarga, setPesoCarga] = useState("");
-  const [valorCarga, setValorCarga] = useState("");
-  const [distanciaFrete, setDistanciaFrete] = useState("");
   const [descricaoCarga, setDescricaoCarga] = useState("");
+  const [valorCarga, setValorCarga] = useState("");
+  const [distanciaCarga, setDistanciaCarga] = useState("");
   const [statusCarga, setStatusCarga] = useState("aguardando_motorista");
-  const [cargas, setCargas] = useState([]);
-  //handle para lidar com os valores
-  const handleChangeCarga = (e) => {
+
+  useEffect(() => {
+    // Aqui você pode fazer uma solicitação para obter a lista de cargas do servidor
+    // Substitua este trecho pelo código para obter as cargas do servidor
+    const cargasFromServer = [
+      {
+        id: 1,
+        nome: "Carga 1",
+        peso: "100",
+        descricao: "Descrição da carga 1",
+        valor: "200",
+        distancia: "10",
+        status: "aguardando_motorista",
+      },
+      {
+        id: 2,
+        nome: "Carga 2",
+        peso: "150",
+        descricao: "Descrição da carga 2",
+        valor: "250",
+        distancia: "20",
+        status: "aceito",
+      },
+    ];
+
+    setCargas(cargasFromServer);
+  }, []);
+
+  const handleChangeIdCarga = (e) => {
+    setIdCarga(e.target.value);
+  };
+
+  const handleChangeNomeCarga = (e) => {
     setNomeCarga(e.target.value);
   };
 
-  const handlePesoCarga = (e) => {
+  const handleChangePesoCarga = (e) => {
     setPesoCarga(e.target.value);
   };
 
-  const handleValorCarga = (e) => {
+  const handleChangeDescricaoCarga = (e) => {
+    setDescricaoCarga(e.target.value);
+  };
+
+  const handleChangeValorCarga = (e) => {
     setValorCarga(e.target.value);
   };
 
-  const handleDistanciaFrete = (e) => {
-    setDistanciaFrete(e.target.value);
+  const handleChangeDistanciaCarga = (e) => {
+    setDistanciaCarga(e.target.value);
   };
-  const handleDescricaoCarga = (e) => {
-    setDescricaoCarga(e.target.value);
-  };
-  //foi criado um padrao para ser inserido um pouco mais abaixo
 
-  const handleSubmit = (e) => {
+  const handleChangeStatusCarga = (e) => {
+    setStatusCarga(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const novaCarga = {
+
+    const cargaData = {
+      id: idCarga,
       nome: nomeCarga,
       peso: pesoCarga,
-      valor: valorCarga,
-      distancia: distanciaFrete,
       descricao: descricaoCarga,
+      valor: valorCarga,
+      distancia: distanciaCarga,
       status: statusCarga,
     };
 
-    setCargas([...cargas, novaCarga]);
-    //esvazia o form apos o envio da requisicao de uma nova carga
-    setNomeCarga("");
-    setPesoCarga("");
-    setValorCarga("");
-    setDescricaoCarga("");
+    try {
+      const response = await fetch("http://localhost:3031/adicionar-carga", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cargaData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao salvar carga");
+      }
+
+      toast.success("Carga adicionada com sucesso", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      // Limpar os campos do formulário após o envio
+      setIdCarga("");
+      setNomeCarga("");
+      setPesoCarga("");
+      setDescricaoCarga("");
+      setValorCarga("");
+      setDistanciaCarga("");
+      setStatusCarga("aguardando_motorista");
+    } catch (error) {
+      console.error("Erro ao salvar carga:", error);
+      toast.error("Erro ao salvar carga", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
-  //faz a validacao do estado da carga para que possa ser alterado entre entregue, etc
-  const handleStatusChange = (novoStatus, index) => {
-    if (novoStatus === "excluir") {
-      const cargasAtualizadas = cargas.filter((carga, i) => i !== index);
-      setCargas(cargasAtualizadas);
-    } else {
-      const cargasAtualizadas = [...cargas];
-      cargasAtualizadas[index].status = novoStatus;
-      setCargas(cargasAtualizadas);
+  const handleExcluirCarga = async (cargaId) => {
+    try {
+      // Enviar uma solicitação DELETE para excluir a carga do servidor
+      const response = await fetch(
+        `http://localhost:3031/excluir-carga/${cargaId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Erro ao excluir carga");
+      }
+
+      // Remover a carga excluída da lista de cargas no estado
+      const updatedCargas = cargas.filter((carga) => carga.id !== cargaId);
+      setCargas(updatedCargas);
+
+      // Exibir uma mensagem de sucesso
+      toast.success("Carga excluída com sucesso", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error) {
+      console.error("Erro ao excluir carga:", error);
+      // Exibir uma mensagem de erro
+      toast.error("Erro ao excluir carga", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition="Bounce"
-      />
+      <ToastContainer position="top-right" autoClose={5000} />
       <div className="UparCargas">
         <container>
           <section>
             <form onSubmit={handleSubmit}>
-              <legend>Preencha os dados da carga a ser colocada</legend>
-              <label>Insira o nome da carga</label>
+              <label>ID da carga:</label>
+              <input
+                type="text"
+                value={idCarga}
+                onChange={handleChangeIdCarga}
+                required
+              />
+              <label>Nome da carga:</label>
               <input
                 type="text"
                 value={nomeCarga}
-                onChange={handleChangeCarga}
+                onChange={handleChangeNomeCarga}
                 required
               />
-              <label>Insira o peso carga (KG)</label>
-              <IMaskInput
-                mask="KG 00000000000"
-                type="text"
-                value={pesoCarga}
-                onChange={handlePesoCarga}
-              />
-              <label>Insira o valor da carga</label>
-              <IMaskInput
-                mask="R$ 000000000000"
-                type="text"
-                value={valorCarga}
-                onChange={handleValorCarga}
-                required
-              />
-              <label>Insira a km que a carga precisa percorrer (KM)</label>
+              <label>Peso da carga (KG):</label>
               <input
                 type="text"
-                value={distanciaFrete}
-                onChange={handleDistanciaFrete}
+                value={pesoCarga}
+                onChange={handleChangePesoCarga}
                 required
               />
-              <label>Insira a descricao da carga</label>
+              <label>Descrição da carga:</label>
               <input
                 type="text"
                 value={descricaoCarga}
-                onChange={handleDescricaoCarga}
+                onChange={handleChangeDescricaoCarga}
                 required
               />
-              <button
-                type="submit"
-                onClick={() => {
-                  toast.success("Carga Criada com sucesso", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: "Bounce",
-                  });
-                }}
+              <label>Valor da carga:</label>
+              <input
+                type="text"
+                value={valorCarga}
+                onChange={handleChangeValorCarga}
+                required
+              />
+              <label>Distância da carga (KM):</label>
+              <input
+                type="text"
+                value={distanciaCarga}
+                onChange={handleChangeDistanciaCarga}
+                required
+              />
+              <label>Status da carga:</label>
+              <select
+                value={statusCarga}
+                onChange={handleChangeStatusCarga}
+                required
               >
-                Criar nova carga
-              </button>
+                <option value="aguardando_motorista">
+                  Aguardando Motorista
+                </option>
+                <option value="aceito">Aceito</option>
+                <option value="entregue">Entregue</option>
+              </select>
+              <button type="submit">Adicionar Carga</button>
             </form>
           </section>
         </container>
-
-        <section>
-          <ul>
-            {cargas.map((carga, index) => (
-              <li key={index}>
-                {carga.nome} - Peso: {carga.peso}, Valor: {carga.valor},
-                Kilometragem:{carga.distancia}, Descrição: {carga.descricao},
-                Status: {carga.status}
-                <button
-                  onClick={() => handleStatusChange("em andamento", index)}
-                >
-                  Em Andamento
-                </button>
-                <button onClick={() => handleStatusChange("entregue", index)}>
-                  Entregue
-                </button>
-                <button
-                  onClick={() =>
-                    handleStatusChange("aguardando motorista", index)
-                  }
-                >
-                  Aguardando Motorista
-                </button>
-                <button onClick={() => handleStatusChange("excluir", index)}>
-                  Excluir
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
       </div>
     </>
   );

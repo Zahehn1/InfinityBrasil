@@ -6,8 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { NavBar } from "../navbar/navbar";
 
-let PORT = 3031;
-let site = `http://localhost:${PORT}/login`;
+const PORT = 3031;
+const site = `http://localhost:${PORT}/login`;
 
 export const LoginForm = () => {
   const [cpf, setCPF] = useState("");
@@ -34,7 +34,7 @@ export const LoginForm = () => {
 
       if (response.status === 200) {
         const data = await response.json();
-        if (data.message === "Login realizado como super usuário") {
+        if (data.userType === "superuser") {
           // Se for admin, direcionar para a página do admin
           navigate("/050900");
         } else {
@@ -61,6 +61,7 @@ export const LoginForm = () => {
       alert("Erro ao fazer login");
     }
   };
+
   return (
     <>
       <ToastContainer
@@ -97,9 +98,7 @@ export const LoginForm = () => {
           <button type="button" onClick={validar}>
             Enviar
           </button>
-          <Link to="/Registro" /*isso ainda e considerado um "a" no css*/>
-            Não possui cadastro? Clique aqui
-          </Link>
+          <Link to="/Registro">Não possui cadastro? Clique aqui</Link>
         </form>
       </section>
     </>
